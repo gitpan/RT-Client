@@ -3,15 +3,6 @@
 use strict;
 use inc::Module::Install;
 
-warn << '.';
-### PLEASE NOTE ##############################################
-
-This is *PRE-ALPHA* code.  Using this module for anything
-(except for learning purporses) is strongly discouraged.
-
-##############################################################
-.
-
 name		('RT-Client');
 author		('Autrijus Tang <autrijus@autrijus.org>');
 abstract	('A client of RT from Best Practical Solutions');

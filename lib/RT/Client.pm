@@ -1,7 +1,7 @@
 package RT::Client;
 
 use 5.006;
-our $VERSION = '0.00_04';
+our $VERSION = '0.01';
 our @ISA = 'XML::Atom::Client';
 
 =head1 NAME
@@ -10,8 +10,8 @@ RT::Client - A client of RT from Best Practical Solutions
 
 =head1 VERSION
 
-This document describes version 0.00_04 of RT::Client,
-released August 4, 2004.
+This document describes version 0.01 of RT::Client,
+released August 26, 2004.
 
 =head1 SYNOPSIS
 
@@ -101,7 +101,8 @@ sub munge_request {
     $req->header(
         'Accept' => join(
             ', ',
-            'application/x.atom+xml', 'application/xml', 'text/xml', '*/*',
+            'application/atom+xml', 'application/x.atom+xml',
+            'application/xml', 'text/xml', '*/*',
         )
     );
     $req->header(

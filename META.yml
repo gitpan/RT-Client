@@ -1,5 +1,5 @@
 name: RT-Client
-version: 0.00_04
+version: 0.01
 abstract: A client of RT from Best Practical Solutions
 author: Autrijus Tang <autrijus@autrijus.org>
 license: perl
