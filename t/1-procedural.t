@@ -13,7 +13,7 @@ $ua->cookie_jar({});
 get('http://localhost/?user=root&pass=password');
 
 if (get('http://root:password@localhost/Atom/0.3/') =~ /<feed/) {
-    plan tests => 64;
+    plan tests => 65;
 }
 else {
     plan skip_all => 'Atom 0.3 not available on localhost';
@@ -152,11 +152,8 @@ is($rt->set("$uri.Status", 'open'), 'open', 'ticket reopened');
 
 $rt->current_user('RT_System');
 is($rt->set("Tickets/$id.Status", 'resolved'), 'resolved', 'resolve a ticket');
-
-TODO: {
-    local $TODO = '*-1.Creator did not redosearch on server side';
-    is($rt->get("Tickets/$id/Transactions/*-1.Creator"), undef, "set by system (should be $sys_id)");
-}
+isnt($rt->get("Tickets/$id/Transactions.Count"), 1, "transactions happened");
+is($rt->get("Tickets/$id/Transactions/*-1.Creator"), $sys_id, "set by system");
 $rt->current_user($rt->username);
 
 # 3. General CLI Requirements

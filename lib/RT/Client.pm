@@ -1,7 +1,7 @@
 package RT::Client;
 
 use 5.006;
-our $VERSION = '0.00_01';
+our $VERSION = '0.00_02';
 our @ISA = 'XML::Atom::Client';
 
 =head1 NAME
@@ -10,7 +10,7 @@ RT::Client - A client of RT from Best Practical Solutions
 
 =head1 VERSION
 
-This document describes version 0.00_01 of RT::Client, released May 17, 2004.
+This document describes version 0.00_02 of RT::Client, released May 19, 2004.
 
 =head1 SYNOPSIS
 
@@ -31,7 +31,7 @@ CPAN distribution remains the only documentation for this module.
 
 As the version number indicates, this is a very early proof-of-concept
 release for peer review; all interfaces are subject to change, and
-it should not be used in production.
+should not be relied upon in production code.
 
 =cut
 
@@ -50,12 +50,11 @@ BEGIN { %LWP::Authen::Wsse:: = (); }
 use LWP::Authen::Wsse;
 use LWP::UserAgent::RTClient;
 
+use RT::Client::Base ();
 use RT::Client::Object ();
 use RT::Client::Property ();
 use RT::Client::Container ();
 use RT::Client::ResultSet ();
-
-*XXX = *Spiffy::XXX;
 
 field path      => '/Atom/0.3/';
 field server    => 'localhost';
@@ -77,7 +76,6 @@ sub new {
     my %args = (@_ % 2) ? (URI => @_) : @_;
 
     if (my $uri = delete $args{URI}) {
-        require URI;
         $uri = URI->new($uri);
         @args{'Username', 'Password'} = split(/:/, $uri->userinfo||'', 2);
         $args{Server} = $uri->scheme . '://' .$uri->host_port;
@@ -171,8 +169,7 @@ stub 'search';
 =cut
 
 sub get {
-    my $res = $self->_request(@_, method => 'GET'); # XXX - ditch this asap
-    $res = $self->_request(@_, method => 'GET') or return undef;
+    my $res = $self->_request(@_, method => 'GET') or return undef;
     return $self->_spawn($res);
 }
 
@@ -182,8 +179,7 @@ sub get {
 
 sub set {
     splice(@_, 1, 0, 'content') if (@_ == 2 and $_[0] ne 'URI');
-    my $res = $self->_request(@_, method => 'GET'); # XXX - ditch this asap
-    $res = $self->_request(@_, method => 'PUT') or return undef;
+    my $res = $self->_request(@_, method => 'PUT') or return undef;
     return $self->_spawn($res);
 }
 
@@ -293,7 +289,7 @@ Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2004 by Autrijus Tang.
+Copyright 2004 by Best Practical Solutions, LLC.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

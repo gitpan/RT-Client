@@ -2,13 +2,11 @@ package RT::Client::Container;
 
 use strict;
 use warnings;
-use Filter::Include;
-use Spiffy '-Base';
 use XML::Simple ();
 use XML::Atom::Feed;
+use Spiffy '-Base';
 
-include RT::Client::Base;
-our @ISA = 'XML::Atom::Feed';
+our @ISA = qw(RT::Client::Base XML::Atom::Feed);
 
 const _rel_map => {
     'service.post'    => 'add',

@@ -1,14 +1,16 @@
 name: RT-Client
-version: 0.00_01
+version: 0.00_02
 abstract: A client of RT from Best Practical Solutions
 author: Autrijus Tang <autrijus@autrijus.org>
 license: perl
 distribution_type: module
 requires:
+  XML::Simple: 0.01
   XML::Atom: 0.07
-  LWP::Authen::Wsse: 0.01
+  URI: 0
   Spiffy: 0.16
-  Filter::Include: 1.4
+  LWP::Authen::Wsse: 0
+  Digest::MD5: 0
 no_index:
   directory:
     - inc

@@ -1,7 +1,8 @@
-# Yes, the lack of a 'package' is deliberate.
+package RT::Client::Base;
 
 use strict;
 use warnings;
+use Spiffy '-Base';
 
 field 'uri';
 field 'doc';
@@ -18,7 +19,11 @@ sub errstr { $self->client->errstr(@_) }
 
 sub new {
     my %args = @_;
-    my $rv = $args{Stream} ? $self->SUPER::new(%args) : {};
+
+    no strict 'refs';
+    my $method = "${$self.'::ISA'}[-1]::new";
+
+    my $rv = $args{Stream} ? $self->$method(%args) : {};
     bless($rv, $self);
 
     $rv->uri($args{URI}) or die 'Missing URI';
@@ -28,7 +33,10 @@ sub new {
 }
 
 sub init {
-    $self->SUPER::init(@_);
+    no strict 'refs';
+    my $method = "${ref($self).'::ISA'}[-1]::init";
+
+    $self->$method(@_);
     return if $self->{init}++;
 
     $self->_init_links;

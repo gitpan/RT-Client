@@ -19,10 +19,12 @@ license		('perl');
 version_from	('lib/RT/Client.pm');
 
 requires(qw(
+    XML::Simple		    0.01
     XML::Atom		    0.07
-    LWP::Authen::Wsse	    0.01
+    URI			    0
     Spiffy		    0.16
-    Filter::Include	    1.4
+    LWP::Authen::Wsse	    0
+    Digest::MD5		    0
 ));
 
 include('ExtUtils::AutoInstall');
