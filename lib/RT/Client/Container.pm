@@ -22,8 +22,9 @@ sub add {
 
     return 1 if $res->is_success;
 
-    $self->status(500);
-    $self->errstr($res->content);
+    my $ref = $res->content_ref; chomp $$ref;
+    $self->errstr($$ref);
+
     return undef;
 }
 

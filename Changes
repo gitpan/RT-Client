@@ -1,3 +1,7 @@
+[Changes for 0.00_04 - August 4, 2004]
+
+Add first draft of MIMEObj handling for ->update.
+
 [Changes for 0.00_03 - May 19, 2004]
 
 Add missing dependency to URI.

@@ -1,7 +1,7 @@
 package RT::Client;
 
 use 5.006;
-our $VERSION = '0.00_03';
+our $VERSION = '0.00_04';
 our @ISA = 'XML::Atom::Client';
 
 =head1 NAME
@@ -10,7 +10,8 @@ RT::Client - A client of RT from Best Practical Solutions
 
 =head1 VERSION
 
-This document describes version 0.00_03 of RT::Client, released May 19, 2004.
+This document describes version 0.00_04 of RT::Client,
+released August 4, 2004.
 
 =head1 SYNOPSIS
 
@@ -227,6 +228,11 @@ sub _request {
 
     if ($method eq 'POST') {
         foreach my $key (sort keys %args) {
+            if (ref $args{$key} and UNIVERSAL::can($args{$key}, 'as_string')) {
+                $args{$key} = $args{$key}->as_string;
+            }
+        }
+        foreach my $key (sort keys %args) {
             next unless UNIVERSAL::isa($args{$key}, 'HASH');
             my $val = delete $args{$key};
             while (my ($k, $v) = each %$val) {
@@ -244,7 +250,12 @@ sub _request {
                 }
             }
         }
-        $req = HTTP::Request::Common::POST($uri, \%args);
+        $req = HTTP::Request::Common::POST(
+	    $uri,
+	    \%args,
+#	    Content_Type => 'form-data',
+#	    Content => [ %args ],
+	);
     }
     else {
         $req = HTTP::Request::Common::_simple_req($method => $uri);
@@ -259,7 +270,8 @@ sub _request {
     print STDERR "<=== " . $res->as_string if $self->debug;
 
     if ($res->is_error) {
-        $self->errstr($res->content);
+	my $ref = $res->content_ref; chomp $$ref;
+        $self->errstr($$ref);
         $self->_handle_error;
         return;
     }

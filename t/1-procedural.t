@@ -13,7 +13,7 @@ $ua->cookie_jar({});
 get('http://localhost/?user=root&pass=password');
 
 if (get('http://root:password@localhost/Atom/0.3/') =~ /<feed/) {
-    plan tests => 66;
+    plan tests => 69;
 }
 else {
     plan skip_all => 'Atom 0.3 not available on localhost';
@@ -65,6 +65,27 @@ ok($rt->update($uri, Subject => { set => 'Set3' }), '->update with explicit set'
 is($rt->get("$uri.Subject"), 'Set3', '->update really happened');
 ok($rt->update($uri, Subject => { set => [ 'Fnord', 'Set4' ] }), '->update with set + multival');
 is($rt->get("$uri.Subject"), 'Set4', '->update really happened');
+
+ok($rt->update($uri, type => 'Comment', Content => 'somme comment here'),
+  '->update (Comment)');
+ok($rt->update($uri, type => 'Correspond', Content => 'somme comment here'),
+  '->update (Correspond)');
+
+SKIP: {
+    skip 'Cannot load MIME::Entity', 1
+      unless eval { require MIME::Entity; 1 };
+
+    my $mime = MIME::Entity->build(
+        Type     => 'multipart/mixed',
+        From     => 'root',
+        To       => 'root',
+        Subject  => 'Test MIME',
+        Data     => [ 'Line 1', 'Line 2' ],
+    );
+    $mime->attach(Path => __FILE__);
+    ok($rt->update($uri, type => 'Correspond', MIMEObj => $mime),
+    '->update (Correspond + MIME)');
+}
 
 my $queue = $rt->get("$uri.QueueObj");
 isa_ok($queue, 'RT::Client::Object', '->QueueObj');
