@@ -1,7 +1,7 @@
 package RT::Client;
 
 use 5.006;
-our $VERSION = '0.00_02';
+our $VERSION = '0.00_03';
 our @ISA = 'XML::Atom::Client';
 
 =head1 NAME
@@ -10,7 +10,7 @@ RT::Client - A client of RT from Best Practical Solutions
 
 =head1 VERSION
 
-This document describes version 0.00_02 of RT::Client, released May 19, 2004.
+This document describes version 0.00_03 of RT::Client, released May 19, 2004.
 
 =head1 SYNOPSIS
 

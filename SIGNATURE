@@ -14,10 +14,10 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 1012200075f9c503c69783b51145bc5370ef0e77 Changes
+SHA1 0ca8a188fca7739df91cfbc46ff23337120ef552 Changes
 SHA1 2627d8d0eeaaa5de232520a259de6e35c7292fdd MANIFEST
 SHA1 638077b93d5360183193ab918ea9489fc0019f94 MANIFEST.SKIP
-SHA1 959efded719a0d288a59d669ea98b87ca444552e META.yml
+SHA1 802d00812a1b4969b0bc042ca70ba230a8a7d104 META.yml
 SHA1 3febef75ddb86a1b6a47f62df2347b27660bb823 Makefile.PL
 SHA1 b49d48de40cb0f8f17d0862bbcf7da0cedb75420 README
 SHA1 46ff42e7e02b856e15106163cd77b1a55fc08fb9 inc/ExtUtils/AutoInstall.pm
@@ -32,19 +32,19 @@ SHA1 207dfa13341a374fc78325fbeb99bc36659aef2d inc/Module/Install/Metadata.pm
 SHA1 aff9341a15c04faec47089851e43d9d4061337e7 inc/Module/Install/Win32.pm
 SHA1 8e0d347ca21bc18b380d9d1aa5910b8d078a76b7 inc/Module/Install/WriteAll.pm
 SHA1 e7f3122abc4c82d1c7b6583fa7ddfc219b6eea95 lib/LWP/UserAgent/RTClient.pm
-SHA1 630c11fca6593e35b8384ffe7b94a4a27783c81b lib/RT/Client.pm
+SHA1 092191dc0aa10710b2f7a08bd603cea84a3ea0f7 lib/RT/Client.pm
 SHA1 3c5b3439c70ed082cd4cc2aaf4f7c8e06ff6549b lib/RT/Client/Base.pm
 SHA1 72122bf8fc363d52b9d563f04693a2ec2cb2cb79 lib/RT/Client/Container.pm
 SHA1 2c1e10fc4279cf6c01e197d66427443ef8c7916f lib/RT/Client/Object.pm
 SHA1 b5dbcd88da2027a73adc89277fb2ba9d3a296e29 lib/RT/Client/Property.pm
 SHA1 c48c539fdbf388da1092211ab45f9ae677f39880 lib/RT/Client/ResultSet.pm
 SHA1 63c7ea0cfdd7643aa113c260eec9c9bf0a6ee8a0 t/0-signature.t
-SHA1 9d3b0a719a953d73428c18a1f8a60a15ad742779 t/1-procedural.t
+SHA1 f60f3848074a271db1d383d1172dce699dc41d50 t/1-procedural.t
 SHA1 edd16bb1d239c5e76c36f52e4b6fb4913d599d06 t/2-oo.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.2.3 (FreeBSD)
 
-iD8DBQFAquWotLPdNzw1AaARArpiAJ4nh+F1yIUSyVKICmjBjRkdP/+E9QCffWyW
-F7KQs0WCw2wStUvO2AxE2pQ=
-=iNsu
+iD8DBQFAqv0JtLPdNzw1AaARAikVAJ9rj5+DLbaM/Xm76jVg3ZapFesBNgCeMsd9
+Opxdes3oO3x9qMr0m9q9LH0=
+=VS0S
 -----END PGP SIGNATURE-----

@@ -1,3 +1,17 @@
+[Changes for 0.00_03 - May 19, 2004]
+
+Add missing dependency to URI.
+
+Removed the unneccessary Get before Get/Set.
+
+All tests now pass correctly now with RT::Atom 0.00_02.
+
+[Changes for 0.00_02 - May 19, 2004]
+
+Add missing dependency to XML::Simple.
+
+Ditch dependency to Filter::Include.
+
 [Changes for 0.00_01 - May 17, 2004]
 
 Initial CPAN Release.

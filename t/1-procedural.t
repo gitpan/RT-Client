@@ -13,7 +13,7 @@ $ua->cookie_jar({});
 get('http://localhost/?user=root&pass=password');
 
 if (get('http://root:password@localhost/Atom/0.3/') =~ /<feed/) {
-    plan tests => 65;
+    plan tests => 66;
 }
 else {
     plan skip_all => 'Atom 0.3 not available on localhost';
@@ -136,6 +136,7 @@ $rt->current_user('RT_System');
 my $id = $rt->get("$uri.Id");
 is($rt->set("Tickets/$id.Subject", 'by system'), 'by system', 'set subject');
 my $sys_id = $rt->get("Users/RT_System.Id");
+isnt($rt->get("Tickets/$id/Transactions.Count"), 1, "transactions happened");
 is($rt->get("Tickets/$id/Transactions/*-1.Creator"), $sys_id, 'set by system');
 $rt->current_user($rt->username);
 
